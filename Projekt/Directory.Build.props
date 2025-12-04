@@ -1,0 +1,8 @@
+<Project>
+  <Target Name="ResetDatabaseIfRequested" BeforeTargets="Build">
+    <PropertyGroup>
+      <_ResetDb>$(RESET_DB)</_ResetDb>
+    </PropertyGroup>
+    <Exec Condition="'$(_ResetDb)' == 'true'" Command="pwsh -NoProfile -ExecutionPolicy Bypass -File $(MSBuildThisFileDirectory)scripts\reset-db.ps1" />
+  </Target>
+</Project>

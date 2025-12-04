@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Simple pre-commit hook to prevent committing appsettings.Local.json or obvious connection strings
+STAGED_FILES=$(git diff --cached --name-only)
+for f in $STAGED_FILES; do
+  # skip hook files and known safe example/script files
+  case "$f" in
+    .githooks/*|.git/hooks/*|appsettings.Local.example.json|build.ps1|setup.ps1|start.ps1)
+      continue
+      ;;
+  esac
+
+  if [[ "$f" == *"appsettings.Local.json"* ]]; then
+    echo "Refusing to commit appsettings.Local.json. Use appsettings.Local.example.json instead.";
+    exit 1;
+  fi
+
+  # only scan text files and skip binary/blob-like paths
+  if git show :"$f" | strings | grep -Ei "Server\s*=.+;\s*Database\s*=" >/dev/null; then
+    echo "Refusing to commit file $f containing potential connection string (Server=...;Database=...).";
+    exit 1;
+  fi
+done
+exit 0

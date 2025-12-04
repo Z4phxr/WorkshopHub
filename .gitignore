@@ -1,0 +1,66 @@
+# Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build artifacts
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/TestResults/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/
+project.lock.json
+packages.lock.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish output
+**/publish/
+
+# Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+resharper*/
+
+# Node/ClientApp
+ClientApp/node_modules/
+ClientApp/build/
+ClientApp/dist/
+ClientApp/.cache/
+ClientApp/.next/
+
+# Environment files
+*.env
+*.env.local
+
+# Misc
+*.swp
+Thumbs.db
+.DS_Store
+
+# Docs (keep tracked)
+!Docs/
+Docs/
